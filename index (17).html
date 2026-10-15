@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Daiane Oliveira | Nail Instructor Quiz</title>
+<meta name="theme-color" content="#FFF7F5">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- UTMify Tracking Code -->
+<script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-subids async defer></script>
+
+<!-- Meta Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1387666049994712');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1387666049994712&ev=PageView&noscript=1" /></noscript>
+<!-- End Meta Pixel Code -->
+
+<script>
+  /* ===== CONFIG: troque aqui sem mexer no resto ===== */
+  window.QUIZ_CONFIG = {
+    SALES_URL: "https://daianeoliveirav4.vercel.app/",
+    BRAND: "Daiane Oliveira",
+    PIXEL_ID: "1387666049994712"
+  };
+</script>
+
+<style>
+  :root{
+    --ink:#2A1014;
+    --wine:#5C1626;
+    --text:#4A3236;
+    --muted:#7A6266;
+    --lacquer:#D62839;
+    --lacquer-deep:#A81C2B;
+    --green:#1E8A4C;
+    --green-bg:#EAF6EF;
+    --red:#C62F3E;
+    --red-bg:#FCECEE;
+    --line:#EBDCD8;
+    --card:#FFFFFF;
+    --bg-top:#FFF8F6;
+    --bg-bottom:#FBEDE9;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    color:var(--text);
+    background:linear-gradient(180deg,var(--bg-top) 0%,var(--bg-bottom) 100%) fixed;
+    background-color:var(--bg-top);
+    min-height:100vh;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block; max-width:100%; height:auto;}
+  button{font-family:inherit;}
+
+  /* TOP BAR */
+  .top{position:fixed; top:0; left:0; right:0; z-index:50; background:rgba(255,248,246,0.94);
+    backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+  .top-inner{max-width:520px; margin:0 auto; padding:12px 16px 10px;}
+  .brand{text-align:center; font-weight:900; font-size:15px; letter-spacing:0.2px; color:var(--wine);}
+  .bar{margin-top:9px; height:5px; border-radius:99px; background:#F1E1DD; overflow:hidden;}
+  .bar span{display:block; height:100%; width:0; border-radius:99px;
+    background:linear-gradient(90deg,var(--lacquer),#F0536A); transition:width .45s ease;}
+
+  /* LAYOUT */
+  .wrap{max-width:520px; margin:0 auto; padding:84px 16px 60px;}
+  .step{display:none; text-align:center; padding:26px 0 30px; border-bottom:1px solid rgba(235,220,216,0.7);}
+  .step.show{display:block; animation:stepIn .5s cubic-bezier(.2,.7,.2,1) both;}
+  .step:last-child{border-bottom:0;}
+  @keyframes stepIn{from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:none;}}
+
+  .eyebrow{display:inline-block; font-size:13px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase;
+    color:var(--lacquer); margin-bottom:10px;}
+  h1,h2{font-weight:900; color:var(--ink); letter-spacing:-0.4px; line-height:1.18;}
+  h1{font-size:27px;}
+  h2{font-size:23px;}
+  .lead{font-size:16px; line-height:1.55; color:var(--text); margin-top:12px; font-weight:500;}
+  .small{font-size:14px; line-height:1.5; color:var(--muted); margin-top:10px; font-weight:500;}
+  .pos{color:var(--green); font-weight:800;}
+  .neg{color:var(--red); font-weight:800;}
+
+  .media{margin-top:18px; border-radius:16px; overflow:hidden; background:#fff; border:1px solid var(--line);}
+  .media img{width:100%; height:auto;}
+  .media.clean{background:transparent; border:0;}
+
+  /* OPTIONS */
+  .options{display:grid; gap:12px; margin-top:20px;}
+  .opt{position:relative; overflow:hidden; display:grid; grid-template-columns:40px 1fr 26px; align-items:center; gap:12px;
+    min-height:64px; width:100%; padding:12px 14px; background:var(--card); border:1.5px solid var(--line); border-radius:16px;
+    font-size:16px; font-weight:700; color:var(--ink); text-align:center; cursor:pointer;
+    box-shadow:0 2px 0 rgba(42,16,20,0.03); transition:border-color .2s, background .2s, transform .12s;
+    -webkit-tap-highlight-color:transparent;}
+  .opt:active{transform:scale(.985);}
+  .opt .emo{width:32px; height:32px;}
+  .opt .label{line-height:1.3;}
+  .opt .arrow{width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    color:#C9AFAA; font-size:18px; font-weight:800;}
+  .opt.selected{border-color:var(--lacquer); background:#FFF3F4;}
+  .opt.selected .arrow{background:var(--lacquer); color:#fff; font-size:14px;}
+  .options.locked .opt:not(.selected){opacity:.55;}
+  .options.locked .opt{pointer-events:none;}
+  .ripple{position:absolute; border-radius:50%; background:rgba(214,40,57,0.22); transform:scale(0);
+    animation:ripple .6s ease-out forwards; pointer-events:none;}
+  @keyframes ripple{to{transform:scale(4); opacity:0;}}
+
+  /* CONTENT BLOCKS */
+  .cards{display:grid; gap:12px; margin-top:20px;}
+  .pain{background:var(--red-bg); border:1px solid #F4CDD2; border-radius:16px; padding:16px 16px 15px;}
+  .pain .q{font-weight:800; color:var(--red); font-size:16px; line-height:1.35;}
+  .pain p{font-size:14.5px; line-height:1.5; margin-top:6px; color:var(--text); font-weight:500;}
+  .good{display:inline-block; margin-top:18px; background:var(--green-bg); color:var(--green); font-weight:800;
+    border-radius:99px; padding:10px 18px; font-size:15px;}
+
+  .covers{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:20px;}
+  .cover{background:#fff; border:1px solid var(--line); border-radius:14px; padding:8px 8px 10px;}
+  .cover img{border-radius:10px; width:100%;}
+  .cover span{display:block; margin-top:8px; font-size:13px; font-weight:800; color:var(--ink); line-height:1.25;}
+
+  .steps3{display:grid; gap:12px; margin-top:20px;}
+  .s3{background:#fff; border:1px solid var(--line); border-radius:16px; padding:16px;}
+  .s3 .n{width:34px; height:34px; margin:0 auto 8px; border-radius:50%; background:var(--lacquer); color:#fff;
+    font-weight:900; display:flex; align-items:center; justify-content:center; font-size:15px;}
+  .s3 b{display:block; font-weight:800; color:var(--ink); font-size:16px;}
+  .s3 p{font-size:14.5px; line-height:1.5; margin-top:4px; font-weight:500;}
+
+  .list{display:grid; gap:10px; margin-top:20px;}
+  .li{display:flex; align-items:center; gap:12px; background:#fff; border:1px solid var(--line); border-radius:14px;
+    padding:12px 14px; text-align:left; font-size:15px; font-weight:600; line-height:1.4; color:var(--ink);}
+  .li .emo{width:28px; height:28px; flex:none;}
+  .tip{margin-top:16px; background:var(--green-bg); color:var(--green); border-radius:14px; padding:12px 14px;
+    font-size:15px; font-weight:700; line-height:1.45;}
+
+  .stars{display:flex; justify-content:center; gap:4px; margin-bottom:8px;}
+  .stars img{width:22px; height:22px;}
+  .reviews{display:grid; gap:12px; margin-top:18px;}
+  .reviews img{width:100%; border-radius:14px; border:1px solid var(--line); background:#fff; cursor:zoom-in;}
+
+  .author{width:132px; height:132px; margin:16px auto 0; border-radius:50%; overflow:hidden; border:4px solid #fff;
+    box-shadow:0 10px 26px rgba(42,16,20,0.14); background:#F3E6DC;}
+  .author img{width:100%; height:100%; object-fit:cover;}
+  .bio{font-size:15px; line-height:1.6; margin-top:14px; font-weight:500;}
+
+  .bonuses{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:20px;}
+  .bonus{background:#fff; border:1px solid var(--line); border-radius:14px; padding:10px 8px 12px;}
+  .bonus .bimg{height:118px; display:flex; align-items:center; justify-content:center;}
+  .bonus .bimg img{max-height:118px; width:auto;}
+  .bonus .tag{display:inline-block; margin-top:8px; font-size:13px; font-weight:800; color:#fff; background:var(--wine);
+    border-radius:99px; padding:4px 10px;}
+  .bonus b{display:block; margin-top:6px; font-size:13.5px; color:var(--ink); line-height:1.3; font-weight:800;}
+  .bonus .val{margin-top:4px; font-size:14px; font-weight:800;}
+  .bonus .val s{color:var(--red); margin-right:6px;}
+  .bonus .val span{color:var(--green);}
+
+  .value-box{margin-top:20px; background:#fff; border:1px solid var(--line); border-radius:18px; padding:20px 16px;}
+  .value-box .was{font-size:20px; font-weight:800; color:var(--ink);}
+  .value-box .was s{color:var(--red); font-weight:900; white-space:nowrap;}
+  .value-box .break{font-size:14px; color:var(--muted); margin-top:6px; font-weight:600;}
+
+  .checks{display:grid; gap:8px; margin-top:18px; text-align:left;}
+  .checks div{display:flex; gap:10px; align-items:flex-start; font-size:15px; font-weight:600; line-height:1.4; color:var(--ink);}
+  .checks i{flex:none; width:22px; height:22px; border-radius:50%; background:var(--green); color:#fff; font-style:normal;
+    font-size:13px; font-weight:900; display:flex; align-items:center; justify-content:center; margin-top:1px;}
+  .guarantee{display:flex; align-items:center; gap:12px; margin-top:18px; background:#fff; border:1px solid var(--line);
+    border-radius:16px; padding:12px 14px; text-align:left;}
+  .guarantee img{width:64px; height:auto; flex:none;}
+  .guarantee b{display:block; font-size:15px; color:var(--ink); font-weight:800;}
+  .guarantee span{font-size:14px; font-weight:500; line-height:1.45;}
+
+  /* VIDEO */
+  .video{position:relative; margin:18px auto 0; width:100%; max-width:320px; aspect-ratio:9/16; border-radius:20px;
+    overflow:hidden; background:#2a1014; box-shadow:0 18px 40px rgba(42,16,20,0.22);}
+  .video video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .video .play{position:absolute; inset:0; display:flex; align-items:flex-end; justify-content:center; padding-bottom:9%;
+    border:0; background:transparent; cursor:pointer;}
+  .video .play span{display:flex; align-items:center; gap:10px; background:rgba(214,40,57,0.96); color:#fff; font-weight:800;
+    font-size:15px; border-radius:99px; padding:9px 18px 9px 9px; box-shadow:0 10px 26px rgba(0,0,0,0.3);}
+  .video .play i{width:40px; height:40px; border-radius:50%; background:#fff; color:var(--lacquer); font-style:normal;
+    display:flex; align-items:center; justify-content:center; font-size:16px; padding-left:3px;}
+  .video.playing .play{display:none;}
+
+  /* BUTTONS */
+  .btn{display:flex; align-items:center; justify-content:center; gap:10px; width:100%; min-height:60px; margin-top:22px;
+    border:0; border-radius:16px; padding:16px 20px; font-size:17px; font-weight:800; color:#fff; cursor:pointer;
+    background:linear-gradient(180deg,#E63A4C 0%,var(--lacquer-deep) 100%); box-shadow:0 10px 22px rgba(214,40,57,0.28);
+    text-decoration:none; -webkit-tap-highlight-color:transparent; transition:transform .12s;}
+  .btn:active{transform:scale(.985);}
+  .btn .emo{width:24px; height:24px;}
+  .btn.done{opacity:.45; pointer-events:none; box-shadow:none;}
+  .btn-final{position:relative; overflow:hidden; font-size:18px; min-height:66px; animation:hop 1.8s ease-in-out infinite;}
+  .btn-final::after{content:""; position:absolute; top:0; left:-60%; width:40%; height:100%;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,0.45),transparent); transform:skewX(-20deg);
+    animation:shine 2.6s ease-in-out infinite;}
+  @keyframes hop{0%,100%{transform:translateY(0);} 50%{transform:translateY(-4px);}}
+  @keyframes shine{0%{left:-60%;} 60%,100%{left:130%;}}
+
+  /* LIGHTBOX */
+  .lb{position:fixed; inset:0; z-index:100; background:rgba(20,6,10,0.88); display:none; align-items:center; justify-content:center; padding:16px;}
+  .lb.open{display:flex;}
+  .lb img{max-width:100%; max-height:90vh; width:auto; border-radius:12px;}
+  .lb button{position:absolute; top:14px; right:14px; width:44px; height:44px; border-radius:50%; border:0; background:#fff;
+    color:var(--ink); font-size:22px; font-weight:800; cursor:pointer;}
+
+  #confetti{position:fixed; inset:0; pointer-events:none; z-index:60;}
+
+  @media (max-width:360px){
+    h1{font-size:24px;} h2{font-size:21px;}
+    .opt{font-size:15px; grid-template-columns:34px 1fr 24px; gap:10px;}
+    .opt .emo{width:28px; height:28px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation:none !important; transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand" id="brand">Daiane Oliveira</div>
+    <div class="bar"><span id="prog"></span></div>
+  </div>
+</header>
+
+<main class="wrap" id="quiz">
+
+  <!-- 1 IDENTIFICATION (branch) -->
+  <section class="step show" id="s1" data-count="1">
+    <h1>Do you teach nail classes?</h1>
+    <p class="lead">Answer a few quick questions and see if these manuals are right for you</p>
+    <div class="media clean"><img src="img/bundle.webp" width="720" height="702" alt="6 editable nail art manuals"></div>
+    <div class="options" data-key="profile">
+      <button class="opt" data-go="s2a" data-value="teacher"><img class="emo" data-src="img/emoji/1f469-200d-1f3eb.webp" alt=""><span class="label">Yes, I already teach</span><span class="arrow">›</span></button>
+      <button class="opt" data-go="s2b" data-value="starting"><img class="emo" data-src="img/emoji/1f331.webp" alt=""><span class="label">Not yet, but I want to start</span><span class="arrow">›</span></button>
+      <button class="opt" data-go="s2b" data-value="own"><img class="emo" data-src="img/emoji/1f485.webp" alt=""><span class="label">I want to level up my own work</span><span class="arrow">›</span></button>
+    </div>
+  </section>
+
+  <!-- 2A path: already teaches -->
+  <section class="step" id="s2a" data-count="2" data-next="s3">
+    <h2>How do you prepare your class materials today?</h2>
+    <div class="options" data-key="materials">
+      <button class="opt"><img class="emo" data-src="img/emoji/1f4dd.webp" alt=""><span class="label">I build them from scratch</span><span class="arrow">›</span></button>
+      <button class="opt"><img class="emo" data-src="img/emoji/1f4c4.webp" alt=""><span class="label">Printed sheets or plain files</span><span class="arrow">›</span></button>
+      <button class="opt"><img class="emo" data-src="img/emoji/1f5e3-fe0f.webp" alt=""><span class="label">I teach without written material</span><span class="arrow">›</span></button>
+    </div>
+  </section>
+
+  <!-- 2B path: wants to start / own work -->
+  <section class="step" id="s2b" data-count="2" data-next="s3">
+    <h2>What's stopping you from having professional materials?</h2>
+    <div class="options" data-key="blocker">
+      <button class="opt"><img class="emo" data-src="img/emoji/1f4da.webp" alt=""><span class="label">I don't know where to start</span><span class="arrow">›</span></button>
+      <button class="opt"><img class="emo" data-src="img/emoji/23f0.webp" alt=""><span class="label">I don't have time to create them</span><span class="arrow">›</span></button>
+      <button class="opt"><img class="emo" data-src="img/emoji/1f61f.webp" alt=""><span class="label">I don't feel ready yet</span><span class="arrow">›</span></button>
+    </div>
+  </section>
+
+  <!-- 3 PAIN -->
+  <section class="step" id="s3" data-count="3" data-next="s4">
+    <h2>How long would it take you to build the material for one class?</h2>
+    <div class="options" data-key="time">
+      <button class="opt"><img class="emo" data-src="img/emoji/23f1-fe0f.webp" alt=""><span class="label">A few hours</span><span class="arrow">›</span></button>
+      <button class="opt"><img class="emo" data-src="img/emoji/1f4c5.webp" alt=""><span class="label">A few days</span><span class="arrow">›</span></button>
+      <button class="opt"><img class="emo" data-src="img/emoji/1f629.webp" alt=""><span class="label">I never get to finish it</span><span class="arrow">›</span></button>
+      <button class="opt"><img class="emo" data-src="img/emoji/1f937-200d-2640-fe0f.webp" alt=""><span class="label">I've never tried</span><span class="arrow">›</span></button>
+    </div>
+  </section>
+
+  <!-- 4 CONTENT: sound familiar (page copy) -->
+  <section class="step" id="s4" data-count="4" data-next="s5">
+    <span class="eyebrow">Sound familiar?</span>
+    <h2>If you've ever felt this, these manuals are for you</h2>
+    <div class="cards">
+      <div class="pain">
+        <div class="q">"My materials don't look professional"</div>
+        <p>You hand out printed sheets or plain files, and it makes your course feel less valuable than it really is</p>
+      </div>
+      <div class="pain">
+        <div class="q">"I lose hours building materials from scratch"</div>
+        <p>Every new class means days of work in Canva or Word, time you could spend teaching instead</p>
+      </div>
+      <div class="pain">
+        <div class="q">"Students don't see the real value of my course"</div>
+        <p>What you hand your students is their first impression of your level as an instructor. If it doesn't impress, neither does your price</p>
+      </div>
+    </div>
+    <div class="good">That changes today</div>
+    <button class="btn" data-continue>Continue</button>
+  </section>
+
+  <!-- 5 PAIN: first impression -->
+  <section class="step" id="s5" data-count="5" data-next="s6">
+    <h2>Do your materials show your real level as a professional?</h2>
+    <div class="options" data-key="level">
+      <button class="opt"><img class="emo" data-src="img/emoji/1f614.webp" alt=""><span class="label">Not really</span><span class="arrow">›</span></button>
+      <button class="opt"><img class="emo" data-src="img/emoji/1f914.webp" alt=""><span class="label">Sometimes</span><span class="arrow">›</span></button>
+      <button class="opt"><img class="emo" data-src="img/emoji/1f642.webp" alt=""><span class="label">Yes, always</span><span class="arrow">›</span></button>
+    </div>
+  </section>
+
+  <!-- 6 DESIRE -->
+  <section class="step" id="s6" data-count="6" data-next="s7">
+    <h2>If you could have professional manuals with your name on them, ready in minutes, would you try it?</h2>
+    <div class="options" data-key="desire">
+      <button class="opt"><img class="emo" data-src="img/emoji/1f60d.webp" alt=""><span class="label">Yes, for sure</span><span class="arrow">›</span></button>
+      <button class="opt"><img class="emo" data-src="img/emoji/1f440.webp" alt=""><span class="label">I'd like to see them first</span><span class="arrow">›</span></button>
+    </div>
+  </section>
+
+  <!-- 7 CONTENT: what's inside (page copy) -->
+  <section class="step" id="s7" data-count="7" data-next="s8">
+    <span class="eyebrow">What's inside</span>
+    <h2>6 professional manuals, ready in minutes</h2>
+    <p class="lead">Not simple PDFs. These are teaching materials designed so your students feel, from day one, that they're in a high-level course. Editable in Canva, with your name and your logo</p>
+    <div class="covers">
+      <div class="cover"><img data-src="img/cover-fiberglass.webp" width="360" height="449" alt="Fiberglass manual"><span>Fiberglass Manual</span></div>
+      <div class="cover"><img data-src="img/cover-f1.webp" width="360" height="449" alt="F1 form manual"><span>F1 Form Manual</span></div>
+      <div class="cover"><img data-src="img/cover-russian.webp" width="360" height="449" alt="Russian form manual"><span>Russian Form Manual</span></div>
+      <div class="cover"><img data-src="img/cover-gel-tips.webp" width="360" height="449" alt="Gel on tips manual"><span>Gel on Tips Manual</span></div>
+      <div class="cover"><img data-src="img/cover-soft-gel.webp" width="360" height="449" alt="Soft gel manual"><span>Soft Gel Manual</span></div>
+      <div class="cover"><img data-src="img/cover-press-on.webp" width="360" height="449" alt="Realistic press-on nails manual"><span>Realistic Press-On Nails Manual</span></div>
+    </div>
+    <button class="btn" data-continue>Continue</button>
+  </section>
+
+  <!-- 8 CONTENT: video proof -->
+  <section class="step" id="s8" data-count="8" data-next="s9">
+    <h2>See everything inside</h2>
+    <p class="lead">Tap to watch the video</p>
+    <div class="video" id="video">
+      <video id="vid" data-src="apostilas.mp4" poster="" data-poster="img/video-cover.webp" playsinline preload="none"></video>
+      <button class="play" id="play" aria-label="Play video"><span><i>▶</i>Watch now</span></button>
+    </div>
+    <button class="btn" data-continue>Continue</button>
+  </section>
+
+  <!-- 9 CONTENT: how it works (page copy) -->
+  <section class="step" id="s9" data-count="9" data-next="s10">
+    <span class="eyebrow">From checkout to classroom</span>
+    <h2>Access, personalize, and use your workbooks in minutes</h2>
+    <div class="steps3">
+      <div class="s3"><div class="n">1</div><b>Get it instantly</b><p>All 6 manuals land in your inbox the moment your purchase goes through. Instant access, no waiting</p></div>
+      <div class="s3"><div class="n">2</div><b>Make it yours</b><p>Everything is 100% editable in Canva. Add your name, your logo, your colors, and your own personal touch</p></div>
+      <div class="s3"><div class="n">3</div><b>Print and teach</b><p>Print the pages or use them digitally to build complete, professional training workbooks for your students</p></div>
+    </div>
+    <button class="btn" data-continue>Continue</button>
+  </section>
+
+  <!-- 10 QUESTION: Canva -->
+  <section class="step" id="s10" data-count="10" data-next="s11">
+    <h2>Have you ever used Canva?</h2>
+    <div class="options" data-key="canva">
+      <button class="opt" data-value="free"><img class="emo" data-src="img/emoji/2705.webp" alt=""><span class="label">Yes, the free version</span><span class="arrow">›</span></button>
+      <button class="opt" data-value="pro"><img class="emo" data-src="img/emoji/1f48e.webp" alt=""><span class="label">Yes, Canva Pro</span><span class="arrow">›</span></button>
+      <button class="opt" data-value="never"><img class="emo" data-src="img/emoji/1f195.webp" alt=""><span class="label">Never used it</span><span class="arrow">›</span></button>
+    </div>
+  </section>
+
+  <!-- 11 CONTENT: easy to customize (page copy) -->
+  <section class="step" id="s11" data-count="11" data-next="s12">
+    <h2>Easy to customize, even if you're not techy</h2>
+    <div class="tip" id="canva-tip">Every manual is ready to go. You just add your name and your basic information</div>
+    <div class="list">
+      <div class="li"><img class="emo" data-src="img/emoji/1f3a8.webp" alt="">Edit everything in Canva, on the free plan or Pro</div>
+      <div class="li"><img class="emo" data-src="img/emoji/270d-fe0f.webp" alt="">Add your professional branding to make it feel like yours</div>
+      <div class="li"><img class="emo" data-src="img/emoji/1f4f1.webp" alt="">Works seamlessly across phone, tablet, and computer</div>
+      <div class="li"><img class="emo" data-src="img/emoji/1f5a8-fe0f.webp" alt="">Reprint your materials anytime, as many times as you want</div>
+    </div>
+    <button class="btn" data-continue>Continue</button>
+  </section>
+
+  <!-- 12 CONTENT: social proof (page copy + real reviews) -->
+  <section class="step" id="s12" data-count="12" data-next="s13">
+    <div class="stars">
+      <img data-src="img/emoji/2b50.webp" alt=""><img data-src="img/emoji/2b50.webp" alt=""><img data-src="img/emoji/2b50.webp" alt=""><img data-src="img/emoji/2b50.webp" alt=""><img data-src="img/emoji/2b50.webp" alt="">
+    </div>
+    <h2>Trusted by 200+ nail instructors worldwide</h2>
+    <p class="lead">Instructors from different countries already use these manuals to run more professional, better-organized classes</p>
+    <div class="reviews">
+      <img class="zoom" data-src="https://daianeoliveira.com/wp-content/uploads/jessicasantos_comment_en_optimized.webp" alt="Customer review">
+      <img class="zoom" data-src="https://daianeoliveira.com/wp-content/uploads/samillycostanails_comment_en_optimized.webp" alt="Customer review">
+      <img class="zoom" data-src="https://daianeoliveira.com/wp-content/uploads/whatsapp_comment_en_optimized.webp" alt="Customer review">
+      <img class="zoom" data-src="https://daianeoliveira.com/wp-content/uploads/mayrasallino_comment_en_optimized.webp" alt="Customer review">
+    </div>
+    <p class="small">Tap a review to zoom in</p>
+    <button class="btn" data-continue>Continue</button>
+  </section>
+
+  <!-- 13 CONTENT: authority (page copy) -->
+  <section class="step" id="s13" data-count="13" data-next="s14">
+    <span class="eyebrow">Who's behind this material</span>
+    <h2>Daiane Oliveira</h2>
+    <div class="author"><img data-src="https://daianeoliveira.com/wp-content/uploads/converted.webp" alt="Daiane Oliveira"></div>
+    <p class="bio">Daiane Oliveira is a Nail Designer and educator with hands-on experience developing professional teaching materials for the nail industry</p>
+    <p class="bio">Throughout her career, she's helped other professionals better organize their courses, raise the level of their presentation, and bring more credibility to their teaching</p>
+    <button class="btn" data-continue>Continue</button>
+  </section>
+
+  <!-- 14 CONTENT: bonuses (page copy) -->
+  <section class="step" id="s14" data-count="14" data-next="s15">
+    <span class="eyebrow">Today only</span>
+    <h2>Plus 4 free bonuses included</h2>
+    <div class="bonuses">
+      <div class="bonus"><div class="bimg"><img data-src="img/bonus-russian-manicure.webp" width="300" height="395" alt="Russian Manicure"></div><span class="tag">BONUS #1</span><b>Russian Manicure: Cuticle &amp; Prep Technique</b><div class="val"><s>$57</s><span>FREE</span></div></div>
+      <div class="bonus"><div class="bimg"><img data-src="img/bonus-gel-polish.webp" width="300" height="389" alt="Gel Polish"></div><span class="tag">BONUS #2</span><b>Gel Polish: Color &amp; Finish Application</b><div class="val"><s>$57</s><span>FREE</span></div></div>
+      <div class="bonus"><div class="bimg"><img data-src="img/bonus-certificate.webp" width="300" height="236" alt="Editable Certificate Template"></div><span class="tag">BONUS #3</span><b>Editable Certificate Template</b><div class="val"><s>$29</s><span>FREE</span></div></div>
+      <div class="bonus"><div class="bimg"><img data-src="img/bonus-price-list.webp" width="300" height="381" alt="Editable Price List"></div><span class="tag">BONUS #4</span><b>Editable Price List</b><div class="val"><s>$19</s><span>FREE</span></div></div>
+    </div>
+    <button class="btn" data-continue>Continue</button>
+  </section>
+
+  <!-- 15 PERCEIVED VALUE -->
+  <section class="step" id="s15" data-count="15" data-next="s16">
+    <h2>How much would you expect to pay for 6 manuals + 4 bonuses?</h2>
+    <div class="options" data-key="value">
+      <button class="opt"><img class="emo" data-src="img/emoji/1f4b0.webp" alt=""><span class="label">More than $200</span><span class="arrow">›</span></button>
+      <button class="opt"><img class="emo" data-src="img/emoji/1f4b5.webp" alt=""><span class="label">Around $100</span><span class="arrow">›</span></button>
+      <button class="opt"><img class="emo" data-src="img/emoji/1fa99.webp" alt=""><span class="label">Around $50</span><span class="arrow">›</span></button>
+      <button class="opt"><img class="emo" data-src="img/emoji/1f914.webp" alt=""><span class="label">I have no idea</span><span class="arrow">›</span></button>
+    </div>
+  </section>
+
+  <!-- 16 TURN -->
+  <section class="step" id="s16" data-count="16" data-next="s17">
+    <h2>The real value of everything you get</h2>
+    <div class="value-box">
+      <div class="was">Real value: <s>$300.00 USD</s></div>
+      <div class="break">6 manuals ($23 each = $138) + 4 bonuses ($162)</div>
+    </div>
+    <p class="lead">We could charge that. But we want every nail instructor to have access to professional materials, so today it's <span class="pos">a lot less</span></p>
+    <button class="btn" data-continue><img class="emo" data-src="img/emoji/1f381.webp" alt="">Reveal my price</button>
+  </section>
+
+  <!-- 17 FINAL -->
+  <section class="step" id="s17" data-count="17">
+    <h2>Based on your answers, this is for you</h2>
+    <p class="lead">Professional editable manuals for nail artists. <span class="pos">Just add your name</span> and you're ready to go</p>
+    <div class="checks">
+      <div><i>✓</i>6 professional manuals, 80+ pages each</div>
+      <div><i>✓</i>4 free bonuses (worth up to $162)</div>
+      <div><i>✓</i>100% editable in Canva, free or Pro</div>
+      <div><i>✓</i>Instant access straight to your inbox</div>
+      <div><i>✓</i>Lifetime access, unlimited reprints</div>
+      <div><i>✓</i>One-time payment, no subscription</div>
+    </div>
+    <div class="guarantee">
+      <img data-src="img/guarantee.webp" width="240" height="242" alt="7 day money back guarantee">
+      <div><b>Official 7-Day Guarantee</b><span>Try it for 7 days, completely risk-free</span></div>
+    </div>
+    <a class="btn btn-final" id="final-btn" href="https://daianeoliveirav4.vercel.app/"><img class="emo" data-src="img/emoji/1f680.webp" alt="">Get instant access</a>
+  </section>
+
+</main>
+
+<div class="lb" id="lb"><button aria-label="Close" id="lb-close">×</button><img id="lb-img" alt=""></div>
+<canvas id="confetti"></canvas>
+
+<script>
+(function(){
+  var C = window.QUIZ_CONFIG;
+  var TOTAL = 17;
+  var prog = document.getElementById('prog');
+  var answered = {};
+
+  document.getElementById('brand').textContent = C.BRAND;
+
+  function loadImages(step){
+    step.querySelectorAll('img[data-src]').forEach(function(img){
+      img.src = img.getAttribute('data-src'); img.removeAttribute('data-src');
+    });
+  }
+  loadImages(document.getElementById('s1'));
+
+  function setProgress(n){ prog.style.width = Math.min(100, Math.round(n / TOTAL * 100)) + '%'; }
+  setProgress(1);
+
+  function reveal(id){
+    var el = document.getElementById(id);
+    if(!el || el.classList.contains('show')) return;
+    loadImages(el);
+    if(id === 's8') prepVideo();
+    if(id === 's17') finish();
+    el.classList.add('show');
+    setProgress(parseInt(el.getAttribute('data-count'), 10));
+    setTimeout(function(){
+      var y = el.getBoundingClientRect().top + window.pageYOffset - 78;
+      window.scrollTo({top: y, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+    }, 120);
+  }
+
+  function ripple(btn, e){
+    var r = btn.getBoundingClientRect(), d = Math.max(r.width, r.height);
+    var s = document.createElement('span'); s.className = 'ripple';
+    var x = (e.clientX || r.left + r.width/2) - r.left - d/2, y = (e.clientY || r.top + r.height/2) - r.top - d/2;
+    s.style.cssText = 'width:'+d+'px;height:'+d+'px;left:'+x+'px;top:'+y+'px';
+    btn.appendChild(s); setTimeout(function(){ s.remove(); }, 650);
+  }
+
+  /* options */
+  document.querySelectorAll('.options').forEach(function(group){
+    group.addEventListener('click', function(e){
+      var btn = e.target.closest('.opt'); if(!btn || group.classList.contains('locked')) return;
+      ripple(btn, e);
+      btn.classList.add('selected'); btn.querySelector('.arrow').textContent = '✓';
+      group.classList.add('locked');
+      answered[group.getAttribute('data-key')] = btn.getAttribute('data-value') || btn.querySelector('.label').textContent;
+      var step = group.closest('.step');
+      var next = btn.getAttribute('data-go') || step.getAttribute('data-next');
+      if(group.getAttribute('data-key') === 'canva') setCanvaTip(btn.getAttribute('data-value'));
+      setTimeout(function(){ reveal(next); }, 380);
+    });
+  });
+
+  /* continue buttons */
+  document.querySelectorAll('[data-continue]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var step = b.closest('.step');
+      b.classList.add('done');
+      reveal(step.getAttribute('data-next'));
+    });
+  });
+
+  function setCanvaTip(v){
+    var t = document.getElementById('canva-tip');
+    if(v === 'free') t.textContent = 'Perfect, the free plan is all you need';
+    else if(v === 'pro') t.textContent = 'Perfect, everything works on Canva Pro too';
+    else t.textContent = 'No problem. Every manual is ready to go. You just add your name and your basic information';
+  }
+
+  /* video */
+  var vid = document.getElementById('vid'), vbox = document.getElementById('video');
+  function prepVideo(){
+    if(vid.getAttribute('data-poster')){ vid.poster = vid.getAttribute('data-poster'); vid.removeAttribute('data-poster'); }
+  }
+  document.getElementById('play').addEventListener('click', function(){
+    if(vid.getAttribute('data-src')){ vid.src = vid.getAttribute('data-src'); vid.removeAttribute('data-src'); }
+    vid.controls = true; vbox.classList.add('playing');
+    var p = vid.play(); if(p && p.catch){ p.catch(function(){}); }
+    if(window.fbq){ try{ fbq('trackCustom','QuizVideoPlay'); }catch(err){} }
+  });
+
+  /* lightbox */
+  var lb = document.getElementById('lb'), lbImg = document.getElementById('lb-img');
+  document.querySelectorAll('.zoom').forEach(function(img){
+    img.addEventListener('click', function(){ lbImg.src = img.src; lb.classList.add('open'); });
+  });
+  lb.addEventListener('click', function(){ lb.classList.remove('open'); });
+
+  /* final link keeps all URL params (UTMs) */
+  function buildLink(){
+    var target = new URL(C.SALES_URL, location.href);
+    var here = new URLSearchParams(location.search);
+    here.forEach(function(v, k){ if(!target.searchParams.has(k)) target.searchParams.set(k, v); });
+    return target.toString();
+  }
+  var finalBtn = document.getElementById('final-btn');
+  finalBtn.href = buildLink();
+  finalBtn.addEventListener('click', function(){
+    finalBtn.href = buildLink();
+    if(window.fbq){ try{ fbq('track','ViewContent'); fbq('trackCustom','QuizComplete'); }catch(err){} }
+  });
+
+  /* confetti */
+  function finish(){
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var cv = document.getElementById('confetti'), ctx = cv.getContext('2d');
+    var W = cv.width = innerWidth, H = cv.height = innerHeight;
+    var colors = ['#D62839','#F0536A','#F6C1C8','#B8902E','#1E8A4C','#FFFFFF'];
+    var parts = [];
+    for(var i=0;i<110;i++){
+      parts.push({x: W/2 + (Math.random()-0.5)*W*0.5, y: H*0.35, vx:(Math.random()-0.5)*9, vy: -Math.random()*11-4,
+        s: Math.random()*6+4, r: Math.random()*6.28, vr:(Math.random()-0.5)*0.3, c: colors[i % colors.length]});
+    }
+    var t0 = performance.now();
+    (function tick(t){
+      var el = t - t0; ctx.clearRect(0,0,W,H);
+      parts.forEach(function(p){
+        p.vy += 0.32; p.x += p.vx; p.y += p.vy; p.r += p.vr;
+        ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.r); ctx.fillStyle = p.c;
+        ctx.globalAlpha = Math.max(0, 1 - el/2600); ctx.fillRect(-p.s/2,-p.s/3,p.s,p.s*0.66); ctx.restore();
+      });
+      if(el < 2600) requestAnimationFrame(tick); else ctx.clearRect(0,0,W,H);
+    })(t0);
+  }
+})();
+</script>
+</body>
+</html>
