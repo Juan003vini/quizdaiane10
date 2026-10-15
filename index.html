@@ -30,7 +30,7 @@
 <script>
   /* ===== CONFIG: troque aqui sem mexer no resto ===== */
   window.QUIZ_CONFIG = {
-    SALES_URL: "https://daianeoliveirav4.vercel.app/",
+    SALES_URL: "https://pay.hotmart.com/V104434534H?checkoutMode=10&bid=1787369311178",
     BRAND: "Daiane Oliveira",
     PIXEL_ID: "1387666049994712"
   };
@@ -179,6 +179,13 @@
   .guarantee img{width:64px; height:auto; flex:none;}
   .guarantee b{display:block; font-size:15px; color:var(--ink); font-weight:800;}
   .guarantee span{font-size:14px; font-weight:500; line-height:1.45;}
+
+  .price{margin-top:20px; background:#fff; border:1px solid var(--line); border-radius:18px; padding:16px;}
+  .price-was{font-size:15px; font-weight:700; color:var(--muted);}
+  .price-was s{color:var(--red);}
+  .price-now{font-size:40px; font-weight:900; color:var(--ink); line-height:1.1; margin-top:4px; letter-spacing:-1px;}
+  .price-now small{font-size:16px; font-weight:800; color:var(--muted); letter-spacing:0;}
+  .price-unit{font-size:14px; font-weight:600; color:var(--green); margin-top:4px;}
 
   /* VIDEO */
   .video{position:relative; margin:18px auto 0; width:100%; max-width:320px; aspect-ratio:9/16; border-radius:20px;
@@ -457,11 +464,16 @@
       <div><i>✓</i>Lifetime access, unlimited reprints</div>
       <div><i>✓</i>One-time payment, no subscription</div>
     </div>
+    <div class="price">
+      <div class="price-was">Real value: <s>$300.00 USD</s></div>
+      <div class="price-now">$39.90 <small>USD</small></div>
+      <div class="price-unit">One-time payment · No subscription</div>
+    </div>
     <div class="guarantee">
       <img data-src="img/guarantee.webp" width="240" height="242" alt="7 day money back guarantee">
       <div><b>Official 7-Day Guarantee</b><span>Try it for 7 days, completely risk-free</span></div>
     </div>
-    <a class="btn btn-final" id="final-btn" href="https://daianeoliveirav4.vercel.app/"><img class="emo" data-src="img/emoji/1f680.webp" alt="">Get instant access</a>
+    <a class="btn btn-final" id="final-btn" href="https://pay.hotmart.com/V104434534H?checkoutMode=10&amp;bid=1787369311178"><img class="emo" data-src="img/emoji/1f680.webp" alt="">Get instant access</a>
   </section>
 
 </main>
